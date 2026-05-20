@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Корзина</h1>
+{% if cart_games %}
+  {% for game in cart_games %}
+  <div class='cart-item'>
+  <img src='{{ game.image }}' alt='{{ game.title }}'>
+  <div class='cart-item-info'>
+    <h3>{{ game.title }}</h3>
+    <p class='genre'>{{ game.genre }}</p>
+    <p class='price'>{{ game.price }} ₽</p>
+  </div>
+  <form method='post' action='/cart/remove'>
+    <input type='hidden' name='game_id' value='{{ game.id }}'>
+    <button class='btn-remove' type='submit'>Удалить</button>
+  </form>
+</div>
+  {% endfor %}
+  <h3>Итого: {{ total }} ₽</h3>
+{% else %}
+  <p>Корзина пуста. <a href='/'>Перейти в каталог</a></p>
+{% endif %}
+{% endblock %}
+
+
+
+
+
+
+
+
